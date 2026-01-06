@@ -5,6 +5,7 @@ on:
     - cron: '*/5 * * * *'  # いまは5分おきのテストになっている．
   workflow_dispatch:
 # UTC 12:00 = JST 21:00
+# touch: re-register schedule 2026-01-06
 jobs:
   post:
     runs-on: ubuntu-latest
