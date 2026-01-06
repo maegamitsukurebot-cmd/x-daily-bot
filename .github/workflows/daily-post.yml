@@ -2,7 +2,7 @@ name: Daily post to X
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # UTC 毎日0時
+    - cron: '0 12 * * *'  # UTC 12:00 = JST 21:00
   workflow_dispatch:
 
 jobs:
@@ -19,12 +19,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Post to X
+      - name: Post to X (DRY RUN)
         env:
           X_API_KEY: ${{ secrets.X_API_KEY }}
           X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-          # ここを変更：{date} がスクリプト内で置換されます（現在はUTCの日付）
+          # ここを変更して投稿文を変えられます（{date} はスクリプト内で置換）
           DAILY_MESSAGE_TEMPLATE: "村山結香ちゃん前髪作って — {date} #村山結香"
+          # 日付表示を日本時間にする
+          DAILY_MESSAGE_TZ: "Asia/Tokyo"
+          # テスト実行時は true。実際に投稿したいときは "false" にするか、この行を削除。
+          DRY_RUN: "true"
         run: python post_daily.py
