@@ -2,7 +2,7 @@ name: Daily post to X
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # UTC 12:00 = JST 21:00
+    - cron: '*/5 * * * *'  # UTC 12:00 = JST 21:00
   workflow_dispatch:
 
 jobs:
