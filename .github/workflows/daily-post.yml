@@ -32,3 +32,5 @@ jobs:
           # テスト実行時は true。実際に投稿したいときは "false" にするか、この行を削除。
           DRY_RUN: "true"
         run: python post_daily.py
+
+        # touch: re-register schedule 2026-01-06
