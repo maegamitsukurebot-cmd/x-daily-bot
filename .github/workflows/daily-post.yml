@@ -2,7 +2,7 @@ name: Daily post to X
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # UTC 毎日0時。JSTにしたければ変えてください
+    - cron: '0 0 * * *'  # UTC 毎日0時
   workflow_dispatch:
 
 jobs:
@@ -25,5 +25,6 @@ jobs:
           X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-          DAILY_MESSAGE_TEMPLATE: "特定の文章 {date}"
+          # ここを変更：{date} がスクリプト内で置換されます（現在はUTCの日付）
+          DAILY_MESSAGE_TEMPLATE: "村山結香ちゃん前髪作って — {date} #村山結香"
         run: python post_daily.py
